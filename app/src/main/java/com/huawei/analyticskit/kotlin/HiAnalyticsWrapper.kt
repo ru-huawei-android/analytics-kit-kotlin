@@ -17,6 +17,8 @@ import java.util.*
 
 class HiAnalyticsWrapper(private val context: Context) {
 
+    private val sdf: DateFormat = SimpleDateFormat(DATE_FORMAT, Locale.ENGLISH)
+
     private lateinit var instance: HiAnalyticsInstance
 
     init {
@@ -44,19 +46,13 @@ class HiAnalyticsWrapper(private val context: Context) {
      * -- answerTime: String
      */
     fun reportAnswerEvt(question: String?, answer: String?) {
-        val sdf: DateFormat = SimpleDateFormat(
-            DATE_FORMAT,
-            Locale.ENGLISH
-        )
 
         // Initiate Parameters
-        val bundle = Bundle()
-        bundle.putString(EVENT_QUESTION, question)
-        bundle.putString(EVENT_QUESTION_ANSWER, answer)
-        bundle.putString(
-            EVENT_QUESTION_TIME,
-            sdf.format(Date())
-        )
+        val bundle = Bundle().apply {
+            putString(EVENT_QUESTION, question)
+            putString(EVENT_QUESTION_ANSWER, answer)
+            putString(EVENT_QUESTION_TIME, sdf.format(Date()))
+        }
 
         // Report a customized Event
         instance.onEvent(EVENT_ANSWER, bundle)
@@ -67,8 +63,9 @@ class HiAnalyticsWrapper(private val context: Context) {
      */
     fun postScore(score: Int) {
         // Initiate Parameters
-        val bundle = Bundle()
-        bundle.putLong(HAParamType.SCORE, score.toLong())
+        val bundle = Bundle().apply {
+            putLong(HAParamType.SCORE, score.toLong())
+        }
 
         // Report a predefined Event
         instance.onEvent(HAEventType.SUBMITSCORE, bundle)
