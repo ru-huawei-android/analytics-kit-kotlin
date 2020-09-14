@@ -15,18 +15,18 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
-class HiAnalyticsWrapper(private val mContext: Context) {
+class HiAnalyticsWrapper(private val context: Context) {
 
-    private var mInstance: HiAnalyticsInstance? = null
+    private lateinit var instance: HiAnalyticsInstance
 
     init {
         // Initiate Analytics Kit
         // Enable Analytics Kit Log
         HiAnalyticsTools.enableLog()
 
-        if (isHmsAvailable(mContext)) {
+        if (isHmsAvailable(context)) {
             // Generate the Analytics Instance
-            mInstance = HiAnalytics.getInstance(mContext)
+            instance = HiAnalytics.getInstance(context)
         }
     }
 
@@ -59,7 +59,7 @@ class HiAnalyticsWrapper(private val mContext: Context) {
         )
 
         // Report a customized Event
-        mInstance?.onEvent(EVENT_ANSWER, bundle)
+        instance.onEvent(EVENT_ANSWER, bundle)
     }
 
     /**
@@ -71,19 +71,17 @@ class HiAnalyticsWrapper(private val mContext: Context) {
         bundle.putLong(HAParamType.SCORE, score.toLong())
 
         // Report a predefined Event
-        mInstance?.onEvent(HAEventType.SUBMITSCORE, bundle)
+        instance.onEvent(HAEventType.SUBMITSCORE, bundle)
     }
 
     fun setUserProfile(sport: String?) {
-        mInstance?.setUserProfile(USER_PROFILE_TAG, sport)
+        instance.setUserProfile(USER_PROFILE_TAG, sport)
     }
 
     fun setUpUserId() {
-        if (mInstance != null) {
-            val id = HmsInstanceId.getInstance(mContext).id
-            mInstance?.setUserId(id)
-            Log.i(TAG, "AAID: $id")
-        }
+        val id = HmsInstanceId.getInstance(context).id
+        instance.setUserId(id)
+        Log.i(TAG, "AAID: $id")
     }
 
     companion object {

@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     private var curQuestionIdx = 0
     private var score = 0
 
-    private val mWrapper: HiAnalyticsWrapper by lazy {
+    private val wrapper: HiAnalyticsWrapper by lazy {
         HiAnalyticsWrapper(applicationContext)
     }
 
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        mWrapper.setUpUserId()
+        wrapper.setUpUserId()
 
         // Retrieve questions from resources
         questions = resources.getStringArray(R.array.questions)
@@ -44,17 +44,17 @@ class MainActivity : AppCompatActivity() {
         btnAnswerTrue.setOnClickListener {
             checkAnswer(true)
             val questions = tvQuestion.text.toString().trim { it <= ' ' }
-            mWrapper.reportAnswerEvt(questions, "true")
+            wrapper.reportAnswerEvt(questions, "true")
         }
 
         btnAnswerFalse.setOnClickListener {
             checkAnswer(false)
             val questions = tvQuestion.text.toString().trim { it <= ' ' }
-            mWrapper.reportAnswerEvt(questions, "false")
+            wrapper.reportAnswerEvt(questions, "false")
         }
 
         btnPostScore.setOnClickListener {
-            mWrapper.postScore(score)
+            wrapper.postScore(score)
             Toast.makeText(this, R.string.post_report_answer, Toast.LENGTH_SHORT).show()
         }
     }
