@@ -19,4 +19,5 @@
     <string name="wrong_answer">The answer is wrong.</string>
     <string name="correct_answer">The answer is correct.</string>
     <string name="post_report_answer">Report has been sent.</string>
+    <string name="favourite_sport">Favourite Sport:</string>
 </resources>
