@@ -18,18 +18,24 @@ android {
 
     signingConfigs {
         config {
-            storeFile file('AnalyticsKitDemo.jks')
-            storePassword 'analytics'
-            keyAlias 'analytics'
-            keyPassword 'analytics'
+            storeFile file('HuaweiSampleKey.jks')
+            storePassword 'HuaweiSampleKey'
+            keyAlias 'HuaweiSampleKey'
+            keyPassword 'HuaweiSampleKey'
+            v1SigningEnabled true
+            v1SigningEnabled true
         }
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             signingConfig signingConfigs.config
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.config
         }
     }
 
