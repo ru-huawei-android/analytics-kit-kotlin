@@ -1,0 +1,23 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <string name="app_name">Analytics Kit Application (Kotlin)</string>
+
+    <string name="true_button">True</string>
+    <string name="false_button">False</string>
+    <string name="setting_button">Settings</string>
+    <string name="next_button">Next</string>
+    <string name="post_score_button">Post Score</string>
+    <string name="save_setting_button">Save</string>
+
+    <string-array name="questions">
+        <item>The largest planet in the solar system is Jupiter</item>
+        <item>The first Olympic Games were held in Athens, Greece</item>
+        <item>The violin has 6 strings</item>
+        <item>Flying bats belong to birds</item>
+        <item>Sound spreads faster in the water than in the air</item>
+    </string-array>
+
+    <string name="wrong_answer">The answer is wrong.</string>
+    <string name="correct_answer">The answer is correct.</string>
+    <string name="post_report_answer">Report has been sent.</string>
+    <string name="favourite_sport">Favourite Sport:</string>
+</resources>
